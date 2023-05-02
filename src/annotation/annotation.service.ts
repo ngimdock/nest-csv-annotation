@@ -9,14 +9,12 @@ export class AnnotationService {
   constructor(private readonly helpersService: HelpersService) {}
 
   annotateCsvFiles(csvFiles: Array<Express.Multer.File>) {
+    if (!csvFiles.length) throw new EmptyFilesException();
+    for (const file of csvFiles) {
+      const fileFormated = this.helpersService.generateCEA(file.originalname);
+      this.filesToAnnotate.push(fileFormated);
+    }
+
     return csvFiles;
-
-    // if (!csvFiles.length) throw new EmptyFilesException();
-
-    // for (const file of csvFiles) {
-    //   const fileFormated = this.helpersService.generateCEA(file.originalname);
-
-    //   this.filesToAnnotate.push(fileFormated);
-    // }
   }
 }

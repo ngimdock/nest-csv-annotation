@@ -23,9 +23,4 @@ export class AnnotationController {
   annotateCsvFiles(@UploadedFiles() csvFiles: Array<Express.Multer.File>) {
     return this.annotationService.annotateCsvFiles(csvFiles);
   }
-
-  @Post('help')
-  handleHelp() {
-    return { message: 'Need help !' };
-  }
 }
